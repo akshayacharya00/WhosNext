@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="appsshoppy.com.whosnext.activities.PaymentDetailsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="10"
+            android:orientation="horizontal"
+            android:background="#EDEDED"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Basic Membership"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:layout_weight="5"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:text="Upgrade Plan?"
+                android:textStyle="bold"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:textColor="@color/colorOrange"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:text="Enter Credit Card Information"
+            android:padding="10dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/separator"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#788287"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:text="Card Number"
+            android:padding="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/edit_text_style"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:hint="Enter Card Number"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#788287"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:text="Card Name"
+            android:padding="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/edit_text_style"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:hint="Full Name"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#788287"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:text="Card Expiry"
+            android:padding="10dp"/>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:layout_marginRight="20dp"
+                android:layout_width="0dp"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/month_array"
+                android:layout_weight="50"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/year_array"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#788287"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:text="Security Code CVC"
+            android:padding="10dp"/>
+
+        <EditText
+            android:layout_width="50dp"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_style"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="..."
+            android:inputType="numberDecimal"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="CONTINUE"
+            android:id="@+id/btnContinuePayment"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorOrange"
+            android:textColor="@android:color/white"/>
+
+        
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:src="@drawable/payment_logo_authorize"/>
+
+    </LinearLayout>
+
+</ScrollView>

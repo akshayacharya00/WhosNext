@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:weightSum="10"
+    >
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="left"
+        android:padding="5dp"
+        android:text="Cut &amp; Finish"
+        android:textColor="@android:color/black"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:gravity="left"/>
+    <ListView
+        android:id="@+id/servicesListCut"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        ></ListView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Creative Colour"
+        android:textColor="@android:color/black"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:layout_gravity="left"
+        android:gravity="left"/>
+    <ListView
+        android:id="@+id/servicesListColour"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        ></ListView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Add to Favourites"
+        android:id="@+id/btnFavourite"
+        android:textColor="@android:color/white"
+        android:background="#2597FD"
+        />
+
+</LinearLayout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:weightSum="10"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="#F1F1F1"
+        android:orientation="vertical"
+        android:weightSum="100"
+        android:layout_weight="8">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/txtServiceName"
+            android:layout_height="0dp"
+            android:layout_weight="70"
+            android:padding="10dp"
+            android:lines="2"
+            android:text="Facial, Hair cut, Head, Shoulder Massage, Shaving &amp; Foot"
+            android:textColor="#535353"/>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="30"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2.5"
+                android:text="Always"
+                android:id="@+id/txtAvailability"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorOrange"/>
+
+            <View
+                android:layout_width="2dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:background="@android:color/darker_gray"
+                android:layout_height="match_parent"/>
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:text="75 Min (approx)"
+                android:layout_gravity="center"
+                android:id="@+id/txtServiceTime"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorOrange"/>
+
+            <View
+                android:layout_width="2dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:background="@android:color/darker_gray"
+                android:layout_height="match_parent"/>
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/txtServicePrice"
+                android:text="$25.00"
+                android:textColor="@color/colorOrange"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:layout_height="match_parent"
+        android:background="#EB5736"
+        android:layout_weight="2">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:src="@drawable/edit"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:background="@android:color/transparent"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_gravity="center"
+            android:src="@drawable/deleteicon"/>
+
+    </LinearLayout>
+
+</LinearLayout>

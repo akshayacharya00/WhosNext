@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="appsshoppy.com.whosnext.activities.PickUpDateTimeActivity"
+    android:background="@android:color/white"
+    tools:showIn="@layout/activity_pick_up_date_time">
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:padding="10dp"
+        app:mcv_showOtherDates="all"
+        app:mcv_selectionColor="#2597FD"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text="Select time slot"
+        android:padding="10dp"
+        android:textColor="@android:color/black"/>
+
+    <View
+        android:layout_width="1508dp"
+        android:background="@android:color/darker_gray"
+        android:layout_height="0dp"
+        android:layout_weight="0.03" />
+
+
+    <org.lucasr.twowayview.widget.TwoWayView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/lvItems"
+        android:padding="10dp"
+        style="@style/TwoWayView"
+        app:twowayview_layoutManager="ListLayoutManager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:drawSelectorOnTop="false"
+        />
+
+    <View
+        android:layout_width="1508dp"
+        android:background="@android:color/darker_gray"
+        android:layout_height="0dp"
+        android:layout_weight="0.03" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:weightSum="100"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:padding="10dp"
+            android:scaleType="center"
+            android:src="@drawable/profilebutton"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="80"
+            android:weightSum="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"
+                android:layout_margin="5dp"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"
+                android:text="Hair cut by Creative Director"
+                android:textColor="#E75737"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.6"
+                android:text="Any Staff"
+                android:gravity="center"
+                android:padding="10dp"
+                android:background="#2596FB"
+                android:textColor="@android:color/white"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom"
+        android:id="@+id/btnConfirm"
+        android:text="CONFIRM THU,28-MAY-2016,2:00 PM"
+        android:textColor="@android:color/white"
+        android:background="#E75737"/>
+
+    
+</LinearLayout>

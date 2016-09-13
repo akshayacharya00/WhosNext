@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@android:color/white">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/checkmark_blue"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:text="THANK YOU"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:text="We just got your message. One of our team member will contact you shortly.\nIf you don't get an email from inbox, please check your spam."
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logosmall"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:text="Please join our social network to\nget regular update"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="2.5"
+            style="@android:style/Widget.Material.Button.Borderless"
+            android:layout_height="wrap_content"
+            android:src="@drawable/facebook"/>
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="2.5"
+            style="@android:style/Widget.Material.Button.Borderless"
+            android:layout_height="wrap_content"
+            android:src="@drawable/twitter"/>
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="2.5"
+            style="@android:style/Widget.Material.Button.Borderless"
+            android:layout_height="wrap_content"
+            android:src="@drawable/linkedin"/>
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="2.5"
+            style="@android:style/Widget.Material.Button.Borderless"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gplus"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:background="@color/colorOrange"
+        android:text="Go Back"/>
+
+
+</LinearLayout>

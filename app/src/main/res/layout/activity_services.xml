@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@android:color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#4DAAFD"
+        android:text="All Services"
+        android:padding="10dp"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#F1F1F1"
+        android:padding="10dp"
+        android:dropDownSelector="@drawable/dropdown"
+        android:layout_height="wrap_content"
+        android:entries="@array/gender_list">
+
+    </Spinner>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:id="@+id/servicesListView"
+        android:dividerHeight="1dp"
+        android:divider="@android:color/transparent"
+        >
+
+    </ListView>
+
+
+</LinearLayout>

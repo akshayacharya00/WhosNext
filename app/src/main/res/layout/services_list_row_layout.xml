@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:weightSum="10"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="6"
+        android:maxLines="2"
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:id="@+id/txtServiceName"
+        android:text="hair cut by creative"
+        android:textColor="#E75737"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtServicePrice"
+            android:textColor="#56AAF9"
+            android:text="$54.00"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtServiceTime"
+            android:text="1h"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:text="Book"
+        android:id="@+id/btnBook"
+        android:textColor="@android:color/white"
+        android:background="#E75737"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

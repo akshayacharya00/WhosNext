@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:weightSum="10"
+    tools:context="appsshoppy.com.whosnext.activities.SignInActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/searchbarround"
+        android:layout_margin="10dp"
+        android:padding="5dp" >
+
+        <EditText
+            android:id="@+id/txtSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:hint="Search name/ category"
+            android:layout_toLeftOf="@+id/imgSearch"
+            android:drawableLeft="@drawable/searchicon"
+            android:drawablePadding="10dp"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:background="#00000000"
+            android:ems="10"/>
+
+        <ImageView
+            android:id="@+id/imgSearch"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/searchbutton" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorLightBlue"
+        android:id="@+id/txtSearchHeader"
+        android:text="New Invitations"
+        android:paddingLeft="10dp"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="1dp"
+        android:divider="@null"
+        android:id="@+id/businessStaffList"
+        android:layout_margin="10dp"
+        >
+
+    </ListView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorLightBlue"
+        android:id="@+id/txtOldStaff"
+        android:text="Older Staff Members"
+        android:paddingLeft="10dp"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="1dp"
+        android:divider="@null"
+        android:id="@+id/businessOlderStaffList"
+        android:layout_margin="10dp"
+        >
+
+    </ListView>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="1dp"
+        android:visibility="gone"
+        android:divider="@null"
+        android:id="@+id/businessSearchStaffList"
+        android:layout_margin="10dp"
+        >
+
+    </ListView>
+
+</LinearLayout>

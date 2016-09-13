@@ -1,0 +1,160 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:weightSum="10"
+    tools:context="appsshoppy.com.whosnext.activities.SignInActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        android:background="@drawable/signbanner"
+        >
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton"
+            android:src="@drawable/avtarbox"
+            android:clickable="true"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customer Name"
+            android:textColor="@android:color/white"
+            android:id="@+id/txtCustomerName"
+            android:layout_alignTop="@+id/imageButton"
+            android:layout_margin="25dp"
+            android:layout_toEndOf="@+id/imageButton" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customer email"
+            android:textColor="@android:color/white"
+            android:id="@+id/txtCustomerEmail"
+            android:layout_marginRight="25dp"
+            android:layout_toEndOf="@+id/imageButton"
+            android:layout_below="@+id/txtCustomerName"
+            android:layout_alignStart="@+id/txtCustomerName" />
+
+    </RelativeLayout>
+
+    <!-- Login progress -->
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton2"
+        style="?android:attr/borderlessButtonStyle"
+        android:src="@drawable/submiticon"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="-30dp"
+        android:layout_gravity="right" />
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/email_login_form"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upload Banner"
+                android:textColor="@android:color/black"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                android:layout_marginBottom="10dp"
+                android:paddingLeft="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="10dp"
+                android:text="First photo will be main banner image and maximum dimenssion of will be width:862px, Height:400px"
+                android:layout_marginBottom="10dp"
+                android:paddingLeft="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="10"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:background="@android:color/darker_gray"
+                    android:src="@drawable/camera"
+                    android:layout_margin="10dp"
+                    android:scaleType="centerInside"
+                    android:layout_height="120dp" />
+
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_margin="10dp"
+                    android:background="@android:color/darker_gray"
+                    android:src="@drawable/addimage"
+                    android:scaleType="fitXY"
+                    android:layout_height="120dp" />
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="UPDATE"
+                android:textColor="@android:color/white"
+                android:background="@color/colorOrange"/>
+
+
+
+            </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@android:color/white"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="#EDEDED"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:text="Customer Details"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ton Lavrence"
+        android:textColor="@android:color/black"
+        android:padding="10dp"
+        android:layout_marginLeft="15dp"
+        android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/usericon"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="demo@gmail.com"
+        android:textColor="@android:color/black"
+        android:padding="10dp"
+        android:layout_marginLeft="15dp"
+        android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/messageicon"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="01234567890"
+        android:textColor="@android:color/black"
+        android:padding="10dp"
+        android:layout_marginLeft="15dp"
+        android:drawablePadding="20dp"
+        android:drawableLeft="@drawable/phoneicon"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_margin="15dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:background="@color/colorLightGrey3"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

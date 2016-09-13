@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:weightSum="10"
+    tools:context="appsshoppy.com.whosnext.activities.SignInActivity">
+
+    <ScrollView
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7">
+        <LinearLayout
+            android:id="@+id/email_login_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorLightBlue"
+                android:text="Personal Details"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                android:padding="10dp"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/cancellation_policy"
+                >
+
+            </Spinner>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorLightBlue"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                android:text="Spa Day Policies"
+                android:padding="10dp"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:entries="@array/arrival_time"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:entries="@array/departure_time"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:entries="@array/cancellation_policy"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:entries="@array/minimum_age"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
+            <EditText
+                android:id="@+id/txtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Other Policies"
+                android:textColorHint="@android:color/black"
+                android:layout_margin="10dp"
+                android:background="@color/colorLightGrey"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeOptions="actionUnspecified"
+                android:inputType="text"
+                android:maxLines="4"
+                 />
+
+
+            </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

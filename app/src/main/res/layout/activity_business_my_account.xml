@@ -1,0 +1,91 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:weightSum="10"
+    tools:context="appsshoppy.com.whosnext.activities.SignInActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        android:background="@drawable/signbanner"
+        >
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton"
+            android:src="@drawable/avtarbox"
+            android:clickable="true"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customer Name"
+            android:textColor="@android:color/white"
+            android:id="@+id/txtCustomerName"
+            android:layout_alignTop="@+id/imageButton"
+            android:layout_margin="25dp"
+            android:layout_toEndOf="@+id/imageButton" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customer email"
+            android:textColor="@android:color/white"
+            android:id="@+id/txtCustomerEmail"
+            android:layout_marginRight="25dp"
+            android:layout_toEndOf="@+id/imageButton"
+            android:layout_below="@+id/txtCustomerName"
+            android:layout_alignStart="@+id/txtCustomerName" />
+
+    </RelativeLayout>
+
+    <!-- Login progress -->
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton2"
+        style="?android:attr/borderlessButtonStyle"
+        android:src="@drawable/submiticon"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="-30dp"
+        android:layout_gravity="right" />
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
+   <!-- <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical"> -->
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:padding="10dp"
+        android:id="@+id/businessActivityList"
+        android:dividerHeight="1dp"
+        android:divider="@android:color/transparent"
+        />
+
+</LinearLayout>

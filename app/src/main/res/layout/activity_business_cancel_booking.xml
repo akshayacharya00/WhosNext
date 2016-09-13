@@ -1,0 +1,197 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:weightSum="10"
+    tools:context="appsshoppy.com.whosnext.activities.SignInActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorLightBlue"
+        android:text="Status:Finished"
+        android:padding="10dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:background="@color/colorLightGrey3">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customer Name:"
+            android:textColor="@color/colorLightBlue"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Victor"
+              />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            />
+
+        <TextView
+            android:layout_gravity="right|center"
+            android:gravity="right|center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Details"
+            android:padding="10dp"
+            android:drawablePadding="10dp"
+            android:drawableRight="@drawable/down_arrow"
+          />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorLightBlue"
+        android:text="Services:"
+        android:padding="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:background="@color/colorLightGrey3">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Wash, Cut &amp; Style"
+                />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorLightBlue"
+                android:text="From:"
+                android:id="@+id/lblFrom"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="9:00 AM"
+                android:textStyle="bold"
+                android:id="@+id/txtTime"
+                android:gravity="center"
+                android:padding="10dp"
+                android:layout_alignTop="@+id/lblFrom"
+                android:layout_toEndOf="@+id/lblFrom"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Tue 24 May"
+                android:textStyle="bold"
+                android:id="@+id/textView10"
+                android:paddingBottom="10dp"
+                android:layout_below="@+id/txtTime"
+                android:layout_alignStart="@+id/txtTime" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/forward"
+                android:scaleType="center"
+                android:id="@+id/imgArrow"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@+id/txtTime"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorLightBlue"
+                android:text="Until:"
+                android:layout_toEndOf="@+id/imgArrow"
+                android:id="@+id/lblTo"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="9:00 AM"
+                android:textStyle="bold"
+                android:id="@+id/txtToTime"
+                android:gravity="center"
+                android:padding="10dp"
+                android:layout_alignTop="@+id/lblTo"
+                android:layout_toEndOf="@+id/lblTo"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Tue 24 May"
+                android:textStyle="bold"
+                android:id="@+id/txtToDate"
+                android:paddingBottom="10dp"
+                android:layout_below="@+id/txtToTime"
+                android:layout_alignStart="@+id/txtToTime" />
+
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:background="@color/colorOrange"
+        android:text="CANCEL BOOKING"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/btnCancelBooking" />
+
+</LinearLayout>
