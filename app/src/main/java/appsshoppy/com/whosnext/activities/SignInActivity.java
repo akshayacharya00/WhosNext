@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -43,6 +45,7 @@ import java.util.Map;
 import appsshoppy.com.whosnext.AppController;
 import appsshoppy.com.whosnext.R;
 import appsshoppy.com.whosnext.util.Constants;
+import appsshoppy.com.whosnext.util.Util;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -109,6 +112,9 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
             public void onClick(View v) {
                 if(mEmailView.getText().toString().trim().length() >0 && mPasswordView.getText().toString().length()>0)
                     performLogin();
+                else{
+                    Util.showAlert(SignInActivity.this,"Info","Please fill in username/password!!!");
+                }
                 //startActivity(new Intent(SignInActivity.this,HomeActivity.class));
                 //finish();
             }
@@ -123,24 +129,42 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
             @Override
             public void onResponse(String response) {
                 Log.d("LoginResponse",response);
+                mProgressView.setVisibility(View.GONE);
                 JsonObject loginResponse = new Gson().fromJson(response,JsonObject.class);
-                
+                if(loginResponse.has("success"))
+                {
+                    if(loginResponse.get("success").getAsBoolean())
+                    {
+                        //login success
+                        String role = loginResponse.get("data").getAsJsonObject().get("role_name").getAsString();
+                        String authKey = loginResponse.get("data").getAsJsonObject().get("auth_key").getAsString();
+                        Util.showAlert(SignInActivity.this,"Info",role);
+                    }
+                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("LoginResponse",error.getLocalizedMessage());
+                mProgressView.setVisibility(View.GONE);
+                Util.showAlert(SignInActivity.this,"Error","Server error!!!");
             }
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("Loginfront[email]","virat@gmail.com");
-                params.put("Loginfront[password]","123456");
+                //dummy data
+                //hansha@gmail.com, Appss8654 // Business
+                //virat@gmail.com, 123456 // ISP
+                //staff@gmail.com, 123456 // Staff
+                //graphics@appsshoppy.com // Apps8654
+                params.put("Loginfront[email]","graphics@appsshoppy.com");
+                params.put("Loginfront[password]","Apps8654");
                 return params;
             }
         };
 
+        mProgressView.setVisibility(View.VISIBLE);
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(loginRequest, Constants.kLogin_API);
 
