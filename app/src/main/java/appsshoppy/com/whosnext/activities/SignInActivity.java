@@ -154,12 +154,11 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<String, String>();
                 //dummy data
-                //hansha@gmail.com, Appss8654 // Business
-                //virat@gmail.com, 123456 // ISP
-                //staff@gmail.com, 123456 // Staff
-                //graphics@appsshoppy.com // Apps8654
-                params.put("Loginfront[email]","graphics@appsshoppy.com");
-                params.put("Loginfront[password]","Apps8654");
+                //hansh1@gmail.com, 123456 // Staff
+                //abhi007@gmail.com, 123456 // ISP
+                //punit.kameriya@gmail.com 123456 //Customer
+                params.put("Loginfront[email]","virat@gmail.com");
+                params.put("Loginfront[password]","123456");
                 return params;
             }
         };

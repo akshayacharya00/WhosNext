@@ -1,6 +1,8 @@
 package appsshoppy.com.whosnext;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.android.volley.Request;
@@ -18,6 +20,8 @@ public class AppController extends Application {
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    private SharedPreferences sharedpreferences;
 
     private static AppController mInstance;
 
@@ -25,6 +29,7 @@ public class AppController extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
     }
 
     public static synchronized AppController getInstance() {
@@ -54,5 +59,11 @@ public class AppController extends Application {
         if (mRequestQueue != null) {
             mRequestQueue.cancelAll(tag);
         }
+    }
+
+    public void saveToSharedPreferences(String key, String value){
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(key, value);
+        editor.commit();
     }
 }
