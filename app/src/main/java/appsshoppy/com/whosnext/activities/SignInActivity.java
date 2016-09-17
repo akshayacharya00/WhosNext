@@ -5,7 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -44,6 +43,7 @@ import java.util.Map;
 
 import appsshoppy.com.whosnext.AppController;
 import appsshoppy.com.whosnext.R;
+import appsshoppy.com.whosnext.activities.individual.HomeActivityIndividual;
 import appsshoppy.com.whosnext.util.Constants;
 import appsshoppy.com.whosnext.util.Util;
 
@@ -138,7 +138,12 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
                         //login success
                         String role = loginResponse.get("data").getAsJsonObject().get("role_name").getAsString();
                         String authKey = loginResponse.get("data").getAsJsonObject().get("auth_key").getAsString();
-                        Util.showAlert(SignInActivity.this,"Info",role);
+                        AppController.getInstance().saveToSharedPreferences(Constants.AUTH_KEY,authKey);
+                        if(role.equals("Individual Service Provider"))
+                        {
+                            startActivity(new Intent(SignInActivity.this, HomeActivityIndividual.class));
+                            finish();
+                        }
                     }
                 }
             }
@@ -157,7 +162,8 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
                 //hansh1@gmail.com, 123456 // Staff
                 //abhi007@gmail.com, 123456 // ISP
                 //punit.kameriya@gmail.com 123456 //Customer
-                params.put("Loginfront[email]","virat@gmail.com");
+                //virat11@gmail.com Abc1234567 // Business
+                params.put("Loginfront[email]","abhi007@gmail.com");
                 params.put("Loginfront[password]","123456");
                 return params;
             }

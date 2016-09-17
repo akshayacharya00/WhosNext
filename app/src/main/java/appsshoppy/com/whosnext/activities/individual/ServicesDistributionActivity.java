@@ -1,19 +1,26 @@
 package appsshoppy.com.whosnext.activities.individual;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.CheckBox;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import appsshoppy.com.whosnext.R;
+import appsshoppy.com.whosnext.model.AddService;
 
 public class ServicesDistributionActivity extends AppCompatActivity {
 
-    private ListView servicesListView;
+    private Button btnSubmit;
+    private Spinner spinnerListedOnline, spinnerOfferAvailable;
+    private CheckBox chkFeatured;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +42,26 @@ public class ServicesDistributionActivity extends AppCompatActivity {
         ((TextView)customView.findViewById(R.id.txtToolbarHeader)).setText("Distribution");
         parent.setContentInsetsAbsolute(0,0);
 
-        /*servicesListView = (ListView) findViewById(R.id.addServicesListView);
-        //list data
-        ArrayList<String> listData = new ArrayList<String>();
-        listData.add("Services and Pricing");
-        listData.add("Description");
-        listData.add("Distribution");
-        servicesListView.setAdapter(new IndividualAddNewServicesListAdapter(listData,this));*/
+        btnSubmit = (Button) findViewById(R.id.btnSubmit);
+        spinnerListedOnline = (Spinner) findViewById(R.id.spinnerListedOnline);
+        spinnerOfferAvailable = (Spinner) findViewById(R.id.spinnerOfferAvailable);
+        chkFeatured = (CheckBox) findViewById(R.id.chkFeatured);
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                AddService addService = new AddService();
+                if(chkFeatured.isChecked())
+                    addService.setIsFeature("1");
+                else
+                    addService.setIsFeature("0");
+                addService.setListedOnline(spinnerListedOnline.getSelectedItem().toString());
+                addService.setOfferAvailable(spinnerOfferAvailable.getSelectedItem().toString());
+                intent.putExtra("service_distribution",new Gson().toJson(addService));
+                setResult(0,intent);
+                finish();
+            }
+        });
     }
 }

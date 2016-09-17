@@ -17,18 +17,35 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.KeyEvent;
+import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.Spinner;
+
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import appsshoppy.com.whosnext.AppController;
 import appsshoppy.com.whosnext.R;
+import appsshoppy.com.whosnext.custom.volleyMultipart.VolleyMultipartRequest;
+import appsshoppy.com.whosnext.model.City;
+import appsshoppy.com.whosnext.model.Country;
+import appsshoppy.com.whosnext.util.Constants;
+import appsshoppy.com.whosnext.util.Util;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -59,6 +76,12 @@ public class ListBusinessActivity extends AppCompatActivity implements LoaderCal
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private EditText txtFullName, txtBusinessName, txtPhoneNumber, txtEmail, txtPassword, txtRePassword, txtCountry, txtCity, txtAddress, txtPostCode;
+    Spinner countrySpinner, citySpinner;
+    private ImageButton imgSubmit;
+    private ArrayList<City> cityList;
+    private ArrayList<Country> countryList;
+    private ArrayList<String> cities, countries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,24 +92,206 @@ public class ListBusinessActivity extends AppCompatActivity implements LoaderCal
 
 
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
+        txtFullName = (EditText) findViewById(R.id.txtFullName);
+        txtBusinessName = (EditText) findViewById(R.id.txtBusinessName);
+        txtPhoneNumber = (EditText) findViewById(R.id.txtPhoneNumber);
+        txtEmail = (EditText) findViewById(R.id.txtEmail);
+        txtPassword = (EditText) findViewById(R.id.txtPassword);
+        txtRePassword = (EditText) findViewById(R.id.txtRePassword);
+        //txtCountry = findViewById(R.id.countrySpinner)
+        txtAddress = (EditText) findViewById(R.id.txtAddress);
+        txtPostCode = (EditText) findViewById(R.id.txtPostcode);
+        imgSubmit = (ImageButton) findViewById(R.id.imgSubmit);
 
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        //on click listener
+        imgSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
+            public void onClick(View v) {
+                if(isValidLoginForm())
+                {
+                    //send data to server
+                    attemptRegistration();
                 }
-                return false;
+                else
+                    Util.showAlert(ListBusinessActivity.this,"Info","Please fill in all the details!");
             }
         });
 
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        countrySpinner = (Spinner) findViewById(R.id.countrySpinner);
+        citySpinner = (Spinner) findViewById(R.id.citySpinner);
+
+        cityList = new ArrayList<City>();
+        countryList = new ArrayList<Country>();
+        cities = new ArrayList<String>();
+        countries = new ArrayList<String>();
+
+        getCountriesAndCities();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, countries);
+        countrySpinner.setAdapter(adapter);
+
+        ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, cities);
+        citySpinner.setAdapter(cityAdapter);
+    }
+
+    private void getCountriesAndCities()
+    {
+        StringRequest request = new StringRequest(Request.Method.GET, Constants
+                .kCountry_API, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    mProgressView.setVisibility(View.GONE);
+                    JsonObject jsonObject = new Gson().fromJson(response,JsonObject.class);
+                    if(jsonObject.has("success"))
+                    {
+                        if(jsonObject.get("success").getAsBoolean())
+                        {
+                            JsonArray countriesArray =  jsonObject.getAsJsonArray("cites");
+                            for(int i=0;i<countriesArray.size();i++)
+                            {
+                                JsonObject countryObject =  countriesArray.get(i).getAsJsonObject();
+                                Country country = new Country();
+                                country.setId(new Integer(countryObject.get("id").getAsInt()).toString());
+                                country.setCountry(countryObject.get("name").getAsString());
+                                countries.add(countryObject.get("name").getAsString());
+                                countryList.add(country);
+                            }
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(ListBusinessActivity.this,android.R.layout.simple_spinner_item, countries);
+                            countrySpinner.setAdapter(adapter);
+                        }
+                    }
+
+            }},new Response.ErrorListener(){
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                    mProgressView.setVisibility(View.GONE);
+                    Util.showAlert(ListBusinessActivity.this,"Error","Server error!!!");
+                }
+        });
+
+        mProgressView.setVisibility(View.VISIBLE);
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(request, Constants.kCountry_API);
+
+        request = new StringRequest(Request.Method.GET, Constants
+                .kCity_API, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                mProgressView.setVisibility(View.GONE);
+                JsonObject jsonObject = new Gson().fromJson(response,JsonObject.class);
+                if(jsonObject.has("success"))
+                {
+                    if(jsonObject.get("success").getAsBoolean())
+                    {
+                        JsonArray citiesArray =  jsonObject.getAsJsonArray("cites");
+                        for(int i=0;i<citiesArray.size();i++)
+                        {
+                            JsonObject countryObject =  citiesArray.get(i).getAsJsonObject();
+                            City city = new City();
+                            city.setId(new Integer(countryObject.get("id").getAsInt()).toString());
+                            city.setCity(countryObject.get("city_name").getAsString());
+                            cities.add(countryObject.get("city_name").getAsString());
+                            cityList.add(city);
+                        }
+                        ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(ListBusinessActivity.this,android.R.layout.simple_spinner_item, cities);
+                        citySpinner.setAdapter(cityAdapter);
+                    }
+                }
+
+            }},new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                mProgressView.setVisibility(View.GONE);
+                Util.showAlert(ListBusinessActivity.this,"Error","Server error!!!");
+            }
+        });
+        mProgressView.setVisibility(View.VISIBLE);
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(request, Constants.kCity_API);
+    }
+
+    private void attemptRegistration()
+    {
+        VolleyMultipartRequest request = new VolleyMultipartRequest(Request.Method.POST, Constants.kRegister_Business_API, new Response.Listener<NetworkResponse>() {
+            @Override
+            public void onResponse(NetworkResponse response) {
+                String resultResponse = new String(response.data);
+                Log.d("Response",resultResponse);
+                mProgressView.setVisibility(View.GONE);
+                JsonObject loginResponse = new Gson().fromJson(resultResponse,JsonObject.class);
+                if(loginResponse.has("message"))
+                {
+                    Util.showAlert(ListBusinessActivity.this,"Info",loginResponse.get("message").getAsString());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                mProgressView.setVisibility(View.GONE);
+                Util.showAlert(ListBusinessActivity.this,"Error","Server error!!!");
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("User[full_name]",txtFullName.getText().toString());
+                params.put("User[profile_name]",txtBusinessName.getText().toString());
+                params.put("User[email]",txtEmail.getText().toString());
+                params.put("User[newPassword]",txtPassword.getText().toString());
+                params.put("User[confirmPassword]",txtRePassword.getText().toString());
+                params.put("User[phone_no]",txtPhoneNumber.getText().toString());
+
+                String country = countrySpinner.getSelectedItem().toString();
+                String countryId = "", cityId = "";
+                for(Country countryObject : countryList)
+                {
+                    if(countryObject.getCountry().equals(country))
+                        countryId = countryObject.getId();
+                }
+
+                String city = citySpinner.getSelectedItem().toString();
+
+                for(City cityObject : cityList)
+                {
+                    if(cityObject.getCity().equals(city))
+                        cityId = cityObject.getId();
+                }
+
+                params.put("User[country_id]",countryId);
+                params.put("User[city_id]",cityId);
+                params.put("User[zipcode]",txtPostCode.getText().toString());
+                params.put("User[address]",txtAddress.getText().toString());
+                params.put("User[role_id]","2");
+                return params;
+            }
+        };
+
+        mProgressView.setVisibility(View.VISIBLE);
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(request, Constants.kLogin_API);
+    }
+
+    private boolean isValidLoginForm()
+    {
+        if(txtFullName.getText().toString().trim().length()>0 && txtBusinessName.getText().toString().trim().length()>0 && txtPhoneNumber.getText().toString().trim().length()>0 && txtEmail.getText().toString().trim().length()>0 && txtPassword.getText().toString().trim().length()>0
+                && txtRePassword.getText().toString().trim().length()>0 && txtAddress.getText().toString().trim().length()>0 && txtPostCode.getText().toString().trim().length()>0 )
+        {
+            if(txtPassword.getText().toString().equals(txtRePassword.getText().toString()))
+                return true;
+            else
+                Util.showAlert(ListBusinessActivity.this,"Error","Password and Re-Password didn't match!");
+        }
+        else
+            Util.showAlert(ListBusinessActivity.this,"Error","Please fill in all the details");
+
+        return false;
     }
 
     private void populateAutoComplete() {

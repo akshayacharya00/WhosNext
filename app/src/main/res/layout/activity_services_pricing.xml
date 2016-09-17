@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:padding="10dp"
+        android:id="@+id/radioGender"
         android:layout_height="wrap_content"
         >
         <RadioButton
@@ -64,90 +65,25 @@
 
     </Spinner>
 
-    <!--<ListView
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="190dp"
+        android:minHeight="200dp"
         android:layout_marginBottom="10dp"
-        android:layout_weight="9"
-        android:padding="10dp"
-        android:id="@+id/servicesListView"
+        android:padding="5dp"
         android:dividerHeight="1dp"
-        android:divider="@android:color/transparent"
-        >
-    </ListView> -->
+        android:id="@+id/categoryListView"
+        android:divider="@android:color/transparent">
+    </ListView>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:weightSum="10"
-        android:layout_height="wrap_content"
-        android:padding="2.5dp">
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Hair Salons"
-            />
-    </LinearLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:weightSum="10"
-        android:layout_height="wrap_content"
-        android:padding="2.5dp">
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Hair Stylists"
-            />
-    </LinearLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:weightSum="10"
-        android:layout_height="wrap_content"
-        android:padding="2.5dp">
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Spa &amp; Massage"
-            />
-    </LinearLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:weightSum="10"
-        android:layout_height="wrap_content"
-        android:padding="2.5dp">
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Brows &amp; Lashes"
-            />
-    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal" android:layout_width="match_parent"
@@ -155,33 +91,20 @@
         android:layout_height="wrap_content"
         android:padding="2.5dp">
 
-        <CheckBox
+        <ImageView
             android:layout_width="wrap_content"
+            android:src="@drawable/price_tag"
+            android:scaleType="fitCenter"
             android:layout_height="wrap_content" />
 
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Nail Spa"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:weightSum="10"
-        android:layout_height="wrap_content"
-        android:padding="2.5dp">
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Body Art"
+            android:gravity="center_vertical"
+            android:id="@+id/txtServiceTitle"
+            android:layout_gravity="center_vertical"
+            android:hint="Service Title here"
             />
     </LinearLayout>
 
@@ -197,13 +120,14 @@
             android:scaleType="fitCenter"
             android:layout_height="wrap_content" />
 
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
-            android:text="Service Title here"
+            android:id="@+id/txtServicePrice"
+            android:hint="Price"
             />
     </LinearLayout>
 
@@ -219,19 +143,21 @@
             android:scaleType="fitCenter"
             android:layout_height="wrap_content" />
 
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:gravity="center_vertical"
+            android:id="@+id/txtServiceDuration"
             android:layout_gravity="center_vertical"
-            android:text="Price"
+            android:hint="Duration"
             />
     </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/btnSubmit"
         android:text="SUBMIT"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"

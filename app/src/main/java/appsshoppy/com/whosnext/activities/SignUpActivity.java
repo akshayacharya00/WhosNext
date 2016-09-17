@@ -3,32 +3,53 @@ package appsshoppy.com.whosnext.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.KeyEvent;
+import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import appsshoppy.com.whosnext.AppController;
 import appsshoppy.com.whosnext.R;
+import appsshoppy.com.whosnext.custom.volleyMultipart.AppHelper;
+import appsshoppy.com.whosnext.custom.volleyMultipart.VolleyMultipartRequest;
+import appsshoppy.com.whosnext.util.Constants;
+import appsshoppy.com.whosnext.util.Util;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -41,6 +62,8 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
+
+    private static final int PICK_PHOTO_FOR_AVATAR = 11;
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -59,6 +82,11 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private EditText txtFullName, txtProfileName, txtEmail, txtPassword, txtRePassword, txtPostCode;
+    private RadioGroup radioGender;
+    private CheckBox chkTermsConditions;
+    private ImageButton imgSubmit, imgProfilePic;
+    private boolean isAvatarSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,27 +94,149 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
         setContentView(R.layout.activity_sign_up);
         setupActionBar();
 
-
-
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
+        txtFullName = (EditText) findViewById(R.id.txtFullName);
+        txtProfileName = (EditText) findViewById(R.id.txtProfileName);
+        txtEmail = (EditText) findViewById(R.id.txtEmail);
+        txtPassword = (EditText) findViewById(R.id.txtPassword);
+        txtRePassword = (EditText) findViewById(R.id.txtRePassword);
+        radioGender = (RadioGroup) findViewById(R.id.radioGender);
+        txtPostCode = (EditText) findViewById(R.id.txtPostCode);
+        chkTermsConditions = (CheckBox) findViewById(R.id.chkTermsAndConditions);
+        imgSubmit = (ImageButton) findViewById(R.id.imgSubmit);
+        imgProfilePic = (ImageButton) findViewById(R.id.imgProfilePic);
+        isAvatarSet = false;
 
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        imgProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
+            public void onClick(View v) {
+                pickImage();
             }
         });
 
 
+        //on click listener
+        imgSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isValidLoginForm())
+                {
+                    //send data to server
+                    attemptRegistration();
+                }
+                else
+                    Util.showAlert(SignUpActivity.this,"Info","Please fill in all the details!");
+            }
+        });
+
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+    public void pickImage() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, PICK_PHOTO_FOR_AVATAR);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_PHOTO_FOR_AVATAR && resultCode == Activity.RESULT_OK) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
+
+
+            if (bitmap != null) {
+                imgProfilePic.setImageBitmap(bitmap);
+                isAvatarSet = true;
+            }
+
+        }
+    }
+
+
+    private void attemptRegistration()
+    {
+        VolleyMultipartRequest request = new VolleyMultipartRequest(Request.Method.POST, Constants.kRegister_API, new Response.Listener<NetworkResponse>() {
+            @Override
+            public void onResponse(NetworkResponse response) {
+                String resultResponse = new String(response.data);
+                Log.d("Response",resultResponse);
+                mProgressView.setVisibility(View.GONE);
+                JsonObject loginResponse = new Gson().fromJson(resultResponse,JsonObject.class);
+                if(loginResponse.has("message"))
+                {
+                    Util.showAlert(SignUpActivity.this,"Info",loginResponse.get("message").getAsString());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                mProgressView.setVisibility(View.GONE);
+                Util.showAlert(SignUpActivity.this,"Error","Server error!!!");
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("User[full_name]",txtFullName.getText().toString());
+                params.put("User[profile_name]",txtProfileName.getText().toString());
+                params.put("User[email]",txtEmail.getText().toString());
+                params.put("User[newPassword]",txtPassword.getText().toString());
+                params.put("User[confirmPassword]",txtRePassword.getText().toString());
+
+                int selectedId = radioGender.getCheckedRadioButtonId();
+                String gender = ((RadioButton) findViewById(selectedId)).getText().toString();
+                if(gender == "Male")
+                    params.put("User[gender]","1");
+                else
+                    params.put("User[gender]","2");
+
+                params.put("User[zipcode]",txtPostCode.getText().toString());
+                params.put("User[check]","1");
+                return params;
+            }
+
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                if(isAvatarSet)
+                params.put("User[avatar]", new DataPart("file_avatar.jpg", AppHelper.getFileDataFromDrawable(getBaseContext(), imgProfilePic.getDrawable()), "image/jpeg"));
+                return params;
+            }
+        };
+
+        mProgressView.setVisibility(View.VISIBLE);
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(request, Constants.kLogin_API);
+    }
+
+    private boolean isValidLoginForm()
+    {
+        if(txtFullName.getText().toString().trim().length()>0 && txtProfileName.getText().toString().trim().length()>0 && txtEmail.getText().toString().trim().length()>0 && txtPassword.getText().toString().trim().length()>0
+                && txtRePassword.getText().toString().trim().length()>0 && radioGender.getCheckedRadioButtonId()!=-1 && txtPostCode.getText().toString().trim().length()>0 && chkTermsConditions.isChecked())
+        {
+            if(txtPassword.getText().toString().equals(txtRePassword.getText().toString()))
+                return true;
+            else
+                Util.showAlert(SignUpActivity.this,"Error","Password and Re-Password didn't match!");
+        }
+        else
+            Util.showAlert(SignUpActivity.this,"Error","Please fill in all the details");
+
+        return false;
     }
 
     private void populateAutoComplete() {

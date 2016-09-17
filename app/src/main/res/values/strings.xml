@@ -159,6 +159,13 @@
 
     <string-array name="listed_online">
         <item>Always</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
     </string-array>
 
     <string-array name="city_list">
@@ -168,7 +175,14 @@
 
 
     <string-array name="offer_available">
-        <item>All venue opening days</item>
+        <item>Always</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
     </string-array>
 
     <string-array name="cancellation_policy">
@@ -186,5 +200,7 @@
     <string-array name="minimum_age">
         <item>Minimum Age</item>
     </string-array>
+
+
 
 </resources>

@@ -12,6 +12,7 @@
         android:padding="10dp"
         android:textColor="@android:color/black"
         android:hint="Description"
+        android:id="@+id/txtDescription"
         android:layout_gravity="left"
         android:gravity="left"
         android:background="@color/colorLightGrey"/>
@@ -20,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SUBMIT"
+        android:id="@+id/btnSubmit"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="15dp"

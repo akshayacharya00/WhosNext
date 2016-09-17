@@ -25,7 +25,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton2"
+        android:id="@+id/imgSubmit"
         style="?android:attr/borderlessButtonStyle"
         android:src="@drawable/submiticon"
         android:layout_alignParentBottom="true"
@@ -102,7 +102,7 @@
                 android:singleLine="true" />
 
             <AutoCompleteTextView
-                android:id="@+id/email"
+                android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
@@ -117,7 +117,7 @@
                 android:singleLine="true" />
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/txtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
@@ -130,8 +130,10 @@
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:singleLine="true" />
+
+
             <EditText
-                android:id="@+id/repassword"
+                android:id="@+id/txtRePassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Re-type Password"
@@ -145,35 +147,34 @@
                 android:maxLines="1"
                 android:singleLine="true" />
 
-            <EditText
-                android:id="@+id/txtCountry"
+            <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Country"
                 android:layout_margin="10dp"
-                android:drawableLeft="@drawable/postcodeicon"
-                android:drawablePadding="20dp"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:id="@+id/countrySpinner"
+                android:background="@drawable/spinner_background"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingRight="15dp"
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/txtCity"
+            </Spinner>
+
+
+            <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="City"
                 android:layout_margin="10dp"
-                android:drawableLeft="@drawable/postcodeicon"
-                android:drawablePadding="20dp"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:id="@+id/citySpinner"
+                android:background="@drawable/spinner_background"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingRight="15dp"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
+
 
             <EditText
                 android:id="@+id/txtAddress"

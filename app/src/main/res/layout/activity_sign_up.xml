@@ -20,9 +20,10 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButton"
+            android:id="@+id/imgProfilePic"
             android:src="@drawable/avtarbox"
             android:clickable="true"
+            android:scaleType="centerInside"
             style="?android:attr/borderlessButtonStyle"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
@@ -33,7 +34,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton2"
+        android:id="@+id/imgSubmit"
         style="?android:attr/borderlessButtonStyle"
         android:src="@drawable/submiticon"
         android:layout_alignParentBottom="true"
@@ -88,7 +89,7 @@
                 android:singleLine="true" />
 
             <AutoCompleteTextView
-                android:id="@+id/email"
+                android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/messageicon"
@@ -103,7 +104,7 @@
 
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/txtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
@@ -117,7 +118,7 @@
                     android:maxLines="1"
                     android:singleLine="true" />
             <EditText
-                android:id="@+id/repassword"
+                android:id="@+id/txtRePassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Re-type Password"
@@ -151,7 +152,7 @@
                     android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
-                    >
+                    android:id="@+id/radioGender">
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:text="Male"

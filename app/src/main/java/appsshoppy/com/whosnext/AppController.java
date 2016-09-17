@@ -10,6 +10,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
+import appsshoppy.com.whosnext.util.Constants;
+
 /**
  * Created by akshayacharya on 04/09/16.
  */
@@ -65,5 +67,13 @@ public class AppController extends Application {
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(key, value);
         editor.commit();
+    }
+
+    public String getFromSharedPreference(String key){
+        return sharedpreferences.getString(key,"");
+    }
+
+    public String getAuthToken(){
+        return sharedpreferences.getString(Constants.AUTH_KEY,"");
     }
 }

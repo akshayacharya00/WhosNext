@@ -192,7 +192,8 @@
                         android:layout_height="0dp"
                         android:layout_weight="700"
                         android:scaleType="centerInside"
-                        android:src="@drawable/staffbutton"/>
+                        android:src="@drawable/staffbutton"
+                        android:id="@+id/btnServices" />
 
 
                     <TextView
@@ -202,7 +203,7 @@
                         android:textColor="@android:color/white"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="Staff"/>
+                        android:text="Services"/>
 
                 </LinearLayout>
 

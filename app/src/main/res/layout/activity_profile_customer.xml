@@ -20,7 +20,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButton"
+            android:id="@+id/imgProfilePic"
             android:src="@drawable/avtarbox"
             android:clickable="true"
             style="?android:attr/borderlessButtonStyle"
@@ -33,9 +33,9 @@
             android:layout_height="wrap_content"
             android:text="Customer Name"
             android:id="@+id/txtCustomerName"
-            android:layout_alignTop="@+id/imageButton"
+            android:layout_alignTop="@+id/imgProfilePic"
             android:layout_margin="25dp"
-            android:layout_toEndOf="@+id/imageButton" />
+            android:layout_toEndOf="@+id/imgProfilePic" />
 
         <TextView
             android:layout_width="wrap_content"

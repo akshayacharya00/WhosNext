@@ -20,7 +20,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButton"
+            android:id="@+id/imgProfilePic"
             android:src="@drawable/avtarbox"
             android:clickable="true"
             style="?android:attr/borderlessButtonStyle"
