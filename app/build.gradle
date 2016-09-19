@@ -30,4 +30,5 @@ dependencies {
     compile 'org.lucasr.twowayview:layouts:1.0.0-SNAPSHOT@aar'
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.google.code.gson:gson:2.5'
+    compile 'com.github.tittojose:timerangepicker-library:0.2'
 }

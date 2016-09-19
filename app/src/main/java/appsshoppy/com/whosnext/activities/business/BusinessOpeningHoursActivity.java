@@ -14,11 +14,13 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 import appsshoppy.com.whosnext.R;
+import me.tittojose.www.timerangepicker_library.TimeRangePickerDialog;
 
-public class BusinessOpeningHoursActivity extends AppCompatActivity {
+public class BusinessOpeningHoursActivity extends AppCompatActivity implements TimeRangePickerDialog.OnTimeRangeSelectedListener{
 
     private ListView servicesListView;
     private TextView btnSetWorkingHours;
+    public static final String TIMERANGEPICKER_TAG = "timerangepicker";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class BusinessOpeningHoursActivity extends AppCompatActivity {
         btnSetWorkingHours.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar mcurrentTime = Calendar.getInstance();
+               /* Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
@@ -55,9 +57,18 @@ public class BusinessOpeningHoursActivity extends AppCompatActivity {
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
-                mTimePicker.show();
+                mTimePicker.show();*/
+                final TimeRangePickerDialog timePickerDialog = TimeRangePickerDialog.newInstance(
+                        BusinessOpeningHoursActivity.this, false);
+                timePickerDialog.show(BusinessOpeningHoursActivity.this.getSupportFragmentManager(), TIMERANGEPICKER_TAG);
+
             }
         });
 
+    }
+
+    @Override
+    public void onTimeRangeSelected(int startHour, int startMin, int endHour, int endMin) {
+            int
     }
 }

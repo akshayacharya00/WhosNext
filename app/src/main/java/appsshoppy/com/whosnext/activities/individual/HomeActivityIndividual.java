@@ -7,10 +7,11 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import appsshoppy.com.whosnext.R;
+import appsshoppy.com.whosnext.activities.business.BusinessOpeningHoursActivity;
 
 public class HomeActivityIndividual extends AppCompatActivity {
 
-    private ImageButton btnServices;
+    private ImageButton btnServices, btnOpeningHours;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,15 @@ public class HomeActivityIndividual extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeActivityIndividual.this,ServicesActivity.class));
-                finish();
+                //finish();
+            }
+        });
+
+        btnOpeningHours = (ImageButton) findViewById(R.id.btnOpeningHours);
+        btnOpeningHours.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivityIndividual.this,BusinessOpeningHoursActivity.class));
             }
         });
 
