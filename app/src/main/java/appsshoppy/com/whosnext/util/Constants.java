@@ -17,5 +17,6 @@ public class Constants {
     public static String kServiceListing_API = kHost_API_URL+"business/services?access_token=";
     public static String kCategoryListing_API = kHost_API_URL+"business/searchcat?access_token=";
     public static String kAddService_API = kHost_API_URL+"business/addservice?access_token=";
+    public static String kBusinessHours_API = kHost_API_URL+"business/businesstime?access_token=";
 
 }

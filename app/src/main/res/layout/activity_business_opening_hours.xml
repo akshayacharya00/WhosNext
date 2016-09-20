@@ -6,6 +6,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent" android:background="@android:color/white">
 
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +23,7 @@
         />
 
     <TextView
-        android:id="@+id/btnSetWorkingHours"
+        android:id="@+id/txtWorkingHours"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="9:00 AM - 5:00 PM"
@@ -79,9 +81,19 @@
             android:textOn=""
             android:textOff=""
             android:gravity="center|right"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:checked="false"
+            android:id="@+id/chk1" />
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
 
     <View
         android:layout_width="match_parent"
@@ -115,7 +127,9 @@
             android:textOn=""
             android:textOff=""
             android:gravity="center"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:checked="false"
+            android:id="@+id/chk2" />
 
     </LinearLayout>
 
@@ -151,7 +165,9 @@
             android:textOn=""
             android:textOff=""
             android:gravity="center"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:checked="false"
+            android:id="@+id/chk3" />
 
     </LinearLayout>
 
@@ -187,7 +203,9 @@
             android:textOn=""
             android:textOff=""
             android:gravity="center"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:checked="false"
+            android:id="@+id/chk4" />
 
     </LinearLayout>
 
@@ -223,7 +241,9 @@
             android:textOn=""
             android:textOff=""
             android:gravity="center"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:checked="false"
+            android:id="@+id/chk5" />
 
     </LinearLayout>
 
@@ -259,7 +279,9 @@
             android:textOn=""
             android:textOff=""
             android:gravity="center"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:checked="false"
+            android:id="@+id/chk6" />
 
     </LinearLayout>
 
@@ -295,7 +317,9 @@
             android:textOn=""
             android:textOff=""
             android:gravity="center"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:checked="false"
+            android:id="@+id/chk7" />
 
     </LinearLayout>
 

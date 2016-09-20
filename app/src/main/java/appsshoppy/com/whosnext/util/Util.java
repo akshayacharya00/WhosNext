@@ -27,4 +27,17 @@ public class Util
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+    public static String getTime(int hourOfDay, int min){
+        String AM_PM ;
+        String time;
+        if(hourOfDay < 12) {
+            AM_PM = hourOfDay+":"+min+" AM";
+
+        } else {
+            AM_PM = (hourOfDay-12)+":"+min+" PM";
+        }
+
+        return  AM_PM;
+    }
 }
