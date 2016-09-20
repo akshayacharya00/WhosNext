@@ -7,11 +7,12 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import appsshoppy.com.whosnext.R;
+import appsshoppy.com.whosnext.activities.business.BusinessFeesPolicyActivity;
 import appsshoppy.com.whosnext.activities.business.BusinessOpeningHoursActivity;
 
 public class HomeActivityIndividual extends AppCompatActivity {
 
-    private ImageButton btnServices, btnOpeningHours;
+    private ImageButton btnServices, btnOpeningHours, btnFeePolicy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,13 @@ public class HomeActivityIndividual extends AppCompatActivity {
             }
         });
 
+        btnFeePolicy = (ImageButton) findViewById(R.id.btnFeePolicy);
+        btnFeePolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivityIndividual.this,BusinessFeesPolicyActivity.class));
+            }
+        });
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         //getSupportActionBar().setCustomView(R.layout.app_bar);
