@@ -8,6 +8,8 @@
     android:weightSum="10"
     tools:context="appsshoppy.com.whosnext.activities.SignInActivity">
 
+    <include layout="@layout/progress_overlay" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -139,7 +141,7 @@
                 />
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Your Paypal Email"
@@ -160,7 +162,8 @@
                 android:layout_margin="15dp"
                 android:text="UPDATE"
                 android:textColor="@android:color/white"
-                android:background="@color/colorOrange"/>
+                android:background="@color/colorOrange"
+                android:id="@+id/btnUpdate" />
 
 
 

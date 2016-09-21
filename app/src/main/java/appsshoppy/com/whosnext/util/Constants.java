@@ -20,5 +20,10 @@ public class Constants {
     public static String kBusinessHours_API = kHost_API_URL+"business/businesstime?access_token=";
     public static String kFeePolicy_API = kHost_API_URL+"business/feepolicies?access_token=";
     public static String kChangePassword_API = kHost_API_URL+"business/changepassword?access_token=";
-
+    public static String kChangePaypalEmail_API = kHost_API_URL+"business/paypal_account?access_token=";
+    public static String kBusinessCategories_API = kHost_API_URL+"default/get-categories";
+    public static String kBusinessAddCategory_API = kHost_API_URL+"business/addcat?access_token=";
+    public static String kBusinessRemoveCategory_API = kHost_API_URL+"business/removecat?access_token=";
+    public static String kStaffMember_API = kHost_API_URL+"business/staff?access_token=";
+    public static String kNewStaffMember_API = kHost_API_URL+"business/newstaff?access_token=";
 }

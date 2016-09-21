@@ -8,6 +8,8 @@
     android:weightSum="10"
     tools:context="appsshoppy.com.whosnext.activities.SignInActivity">
 
+    <include layout="@layout/progress_overlay" />
+
     <RelativeLayout
         android:id="@+id/rlSearch"
         android:layout_width="wrap_content"

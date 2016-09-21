@@ -24,6 +24,7 @@ public class AppController extends Application {
     private ImageLoader mImageLoader;
     public static final String MyPREFERENCES = "MyPrefs" ;
     private SharedPreferences sharedpreferences;
+    public static String role;
 
     private static AppController mInstance;
 

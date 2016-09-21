@@ -139,6 +139,7 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
                         //login success
                         parseLoginResponse(loginResponse.get("data").getAsJsonObject());
                         String role = loginResponse.get("data").getAsJsonObject().get("role_name").getAsString();
+                        AppController.getInstance().role = role;
                         String authKey = loginResponse.get("data").getAsJsonObject().get("auth_key").getAsString();
                         AppController.getInstance().saveToSharedPreferences(Constants.AUTH_KEY,authKey);
                         if(role.equals("Individual Service Provider") || role.equals("Business"))
@@ -154,7 +155,6 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("LoginResponse",error.getLocalizedMessage());
                 mProgressView.setVisibility(View.GONE);
                 Util.showAlert(SignInActivity.this,"Error","Server error!!!");
             }
