@@ -44,6 +44,7 @@ import java.util.Map;
 import appsshoppy.com.whosnext.AppController;
 import appsshoppy.com.whosnext.R;
 import appsshoppy.com.whosnext.activities.individual.HomeActivityIndividual;
+import appsshoppy.com.whosnext.model.User;
 import appsshoppy.com.whosnext.util.Constants;
 import appsshoppy.com.whosnext.util.Util;
 
@@ -136,15 +137,18 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
                     if(loginResponse.get("success").getAsBoolean())
                     {
                         //login success
+                        parseLoginResponse(loginResponse.get("data").getAsJsonObject());
                         String role = loginResponse.get("data").getAsJsonObject().get("role_name").getAsString();
                         String authKey = loginResponse.get("data").getAsJsonObject().get("auth_key").getAsString();
                         AppController.getInstance().saveToSharedPreferences(Constants.AUTH_KEY,authKey);
-                        if(role.equals("Individual Service Provider"))
+                        if(role.equals("Individual Service Provider") || role.equals("Business"))
                         {
                             startActivity(new Intent(SignInActivity.this, HomeActivityIndividual.class));
                             finish();
                         }
                     }
+                    else
+                        Util.showAlert(SignInActivity.this,"Info",loginResponse.get("message").toString());
                 }
             }
         }, new Response.ErrorListener() {
@@ -162,9 +166,9 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
                 //hansh1@gmail.com, 123456 // Staff
                 //abhi007@gmail.com, 123456 // ISP
                 //punit.kameriya@gmail.com 123456 //Customer
-                //virat11@gmail.com Abc1234567 // Business
-                params.put("Loginfront[email]","abhi007@gmail.com");
-                params.put("Loginfront[password]","123456");
+                //abhi@gmail.com 123456 // Customer
+                params.put("Loginfront[email]","abhi@gmail.com");
+                params.put("Loginfront[password]","Abc123456");
                 return params;
             }
         };
@@ -436,6 +440,37 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
             mAuthTask = null;
             showProgress(false);
         }
+    }
+
+    private void parseLoginResponse(JsonObject loginResponse){
+        User user = new User();
+        user.setFirstName(loginResponse.get("first_name").getAsString());
+        user.setLastName(loginResponse.get("last_name").getAsString());
+        user.setGender(loginResponse.get("gender").getAsString());
+        user.setInstaUrl(loginResponse.get("instagram_url").getAsString());
+        user.setProfileName(loginResponse.get("profile_name").getAsString());
+        user.setEmail(loginResponse.get("email").getAsString());
+        user.setLocationOnMap(loginResponse.get("location_on_map").getAsString());
+        user.setLatitude(loginResponse.get("lat").getAsString());
+        user.setLogitude(loginResponse.get("lng").getAsString());
+        user.setAbout(loginResponse.get("about").getAsString());
+        user.setAvatar(loginResponse.get("avatar").getAsString());
+        user.setBannerImage(loginResponse.get("banner_image").getAsString());
+        user.setCoutryId(loginResponse.get("country_id").getAsInt());
+        user.setCityId(loginResponse.get("city_id").getAsInt());
+        user.setZipCode(loginResponse.get("zipcode").getAsString());
+        user.setAddress(loginResponse.get("address").getAsString());
+        user.setPhoneNo(loginResponse.get("phone_no").getAsString());
+        user.setPaypalEmail(loginResponse.get("paypal_email").getAsString());
+        user.setWebUrl(loginResponse.get("website_url").getAsString());
+        user.setPremium(loginResponse.get("is_premium").getAsBoolean());
+        user.setAcceptCreditCard(loginResponse.get("Accept credit card").getAsString());
+        user.setWheelChair(loginResponse.get("Wheelchair").getAsString());
+        user.setParking(loginResponse.get("Parking").getAsString());
+        user.setStatus(loginResponse.get("status").getAsString());
+
+        AppController.getInstance().saveToSharedPreferences("user_data",new Gson().toJson(user,User.class));
+
     }
 }
 
