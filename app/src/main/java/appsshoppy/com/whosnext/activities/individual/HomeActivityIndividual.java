@@ -42,6 +42,7 @@ public class HomeActivityIndividual extends AppCompatActivity {
                 startActivity(new Intent(HomeActivityIndividual.this,BusinessFeesPolicyActivity.class));
             }
         });
+
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         //getSupportActionBar().setCustomView(R.layout.app_bar);

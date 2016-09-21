@@ -113,17 +113,17 @@ public class BusinessOpeningHoursActivity extends AppCompatActivity implements T
 
         if(chkbox1.isChecked())
             selectedDays.add("1");
-        else if(chkbox2.isChecked())
+        if(chkbox2.isChecked())
             selectedDays.add("2");
-        else if(chkbox3.isChecked())
+        if(chkbox3.isChecked())
             selectedDays.add("3");
-        else if(chkbox4.isChecked())
+        if(chkbox4.isChecked())
             selectedDays.add("4");
-        else if(chkbox5.isChecked())
+        if(chkbox5.isChecked())
             selectedDays.add("5");
-        else if(chkbox6.isChecked())
+        if(chkbox6.isChecked())
             selectedDays.add("6");
-        else if(chkbox7.isChecked())
+        if(chkbox7.isChecked())
             selectedDays.add("7");
 
         openingDays = TextUtils.join(",",selectedDays);
