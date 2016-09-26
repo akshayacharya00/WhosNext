@@ -63,7 +63,7 @@ public class BusinessPaymentDetailsActivity extends AppCompatActivity {
         imgProfilePic = (ImageButton) findViewById(R.id.imgProfilePic);
         mProgressView = findViewById(R.id.progress_overlay);
         txtCustomerEmail = (TextView) findViewById(R.id.txtCustomerEmail);
-        txtCustomerName = (TextView) findViewById(R.id.txtCustomerName);
+        txtCustomerName = (TextView) findViewById(R.id.lblCustomerName);
         btnUpdate = (Button) findViewById(R.id.btnUpdate);
         txtPaypalEmail = (EditText) findViewById(R.id.txtEmail);
 

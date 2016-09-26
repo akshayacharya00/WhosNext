@@ -26,4 +26,5 @@ public class Constants {
     public static String kBusinessRemoveCategory_API = kHost_API_URL+"business/removecat?access_token=";
     public static String kStaffMember_API = kHost_API_URL+"business/staff?access_token=";
     public static String kNewStaffMember_API = kHost_API_URL+"business/newstaff?access_token=";
+    public static String kCustomer_Edit_Profile_API = kHost_API_URL+"customer/account?access_token=";
 }

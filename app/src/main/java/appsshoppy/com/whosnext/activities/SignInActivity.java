@@ -137,12 +137,12 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
                     if(loginResponse.get("success").getAsBoolean())
                     {
                         //login success
-                        parseLoginResponse(loginResponse.get("data").getAsJsonObject());
                         String role = loginResponse.get("data").getAsJsonObject().get("role_name").getAsString();
                         AppController.getInstance().role = role;
+                        parseLoginResponse(loginResponse.get("data").getAsJsonObject());
                         String authKey = loginResponse.get("data").getAsJsonObject().get("auth_key").getAsString();
                         AppController.getInstance().saveToSharedPreferences(Constants.AUTH_KEY,authKey);
-                        if(role.equals("Individual Service Provider") || role.equals("Business"))
+                        if(role.equals("Individual Service Provider") || role.equals("Business") || role.equals("Customer"))
                         {
                             startActivity(new Intent(SignInActivity.this, HomeActivityIndividual.class));
                             finish();
@@ -167,8 +167,8 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
                 //abhi007@gmail.com, 123456 // ISP
                 //punit.kameriya@gmail.com 123456 //Customer
                 //abhi@gmail.com 123456 // Customer
-                params.put("Loginfront[email]","abhi@gmail.com");
-                params.put("Loginfront[password]","Abc123456");
+                params.put("Loginfront[email]",mEmailView.getText().toString());
+                params.put("Loginfront[password]",mPasswordView.getText().toString());
                 return params;
             }
         };
@@ -444,29 +444,33 @@ public class SignInActivity extends AppCompatActivity implements LoaderCallbacks
 
     private void parseLoginResponse(JsonObject loginResponse){
         User user = new User();
-        user.setFirstName(loginResponse.get("first_name").getAsString());
-        user.setLastName(loginResponse.get("last_name").getAsString());
-        user.setGender(loginResponse.get("gender").getAsString());
-        user.setInstaUrl(loginResponse.get("instagram_url").getAsString());
-        user.setProfileName(loginResponse.get("profile_name").getAsString());
-        user.setEmail(loginResponse.get("email").getAsString());
-        user.setLocationOnMap(loginResponse.get("location_on_map").getAsString());
-        user.setLatitude(loginResponse.get("lat").getAsString());
-        user.setLogitude(loginResponse.get("lng").getAsString());
-        user.setAbout(loginResponse.get("about").getAsString());
-        user.setAvatar(loginResponse.get("avatar").getAsString());
-        user.setBannerImage(loginResponse.get("banner_image").getAsString());
-        user.setCoutryId(loginResponse.get("country_id").getAsInt());
-        user.setCityId(loginResponse.get("city_id").getAsInt());
-        user.setZipCode(loginResponse.get("zipcode").getAsString());
-        user.setAddress(loginResponse.get("address").getAsString());
-        user.setPhoneNo(loginResponse.get("phone_no").getAsString());
-        user.setPaypalEmail(loginResponse.get("paypal_email").getAsString());
-        user.setWebUrl(loginResponse.get("website_url").getAsString());
-        user.setPremium(loginResponse.get("is_premium").getAsBoolean());
-        user.setAcceptCreditCard(loginResponse.get("Accept credit card").getAsString());
-        user.setWheelChair(loginResponse.get("Wheelchair").getAsString());
-        user.setParking(loginResponse.get("Parking").getAsString());
+        user.setFirstName(loginResponse.has("first_name")?loginResponse.get("first_name").getAsString():"");
+        user.setLastName(loginResponse.has("last_name")?loginResponse.get("last_name").getAsString():"");
+        user.setGender(loginResponse.has("gender")?loginResponse.get("gender").getAsString():"");
+        user.setInstaUrl(loginResponse.has("instagram_url")?loginResponse.get("instagram_url").getAsString():"");
+        user.setProfileName(loginResponse.has("profile_name")?loginResponse.get("profile_name").getAsString():"");
+        user.setEmail(loginResponse.has("email")?loginResponse.get("email").getAsString():"");
+        user.setLocationOnMap(loginResponse.has("location_on_map")?loginResponse.get("location_on_map").getAsString():"");
+        user.setLatitude(loginResponse.has("lat")?loginResponse.get("lat").getAsString():"");
+        user.setLogitude(loginResponse.has("lng")?loginResponse.get("lng").getAsString():"");
+        user.setAbout(loginResponse.has("about")?loginResponse.get("about").getAsString():"");
+        user.setAvatar(loginResponse.has("avatar")?loginResponse.get("avatar").getAsString():"");
+        user.setBannerImage(loginResponse.has("banner_image")?loginResponse.get("banner_image").getAsString():"");
+        user.setCoutryId(loginResponse.has("country_id")?loginResponse.get("country_id").getAsInt():0);
+        user.setCityId(loginResponse.has("city_id")?loginResponse.get("city_id").getAsInt():0);
+        user.setZipCode(loginResponse.has("zipcode")?loginResponse.get("zipcode").getAsString():"");
+        user.setAddress(loginResponse.has("address")?loginResponse.get("address").getAsString():"");
+        user.setPhoneNo(loginResponse.has("phone_no")?loginResponse.get("phone_no").getAsString():"");
+        user.setPaypalEmail(loginResponse.has("paypal_email")?loginResponse.get("paypal_email").getAsString():"");
+        user.setWebUrl(loginResponse.has("website_url")?loginResponse.get("website_url").getAsString():"");
+        user.setPremium(loginResponse.has("is_premium")?loginResponse.get("is_premium").getAsBoolean():false);
+        //if(AppController.role.equals("Business"))
+        {
+            user.setAcceptCreditCard(loginResponse.has("Accept credit card")?loginResponse.get("Accept credit card").getAsString():"");
+            user.setWheelChair(loginResponse.has("Wheelchair")?loginResponse.get("Wheelchair").getAsString():"");
+            user.setParking(loginResponse.has("Parking")?loginResponse.get("Parking").getAsString():"");
+        }
+
         user.setStatus(loginResponse.get("status").getAsString());
 
         AppController.getInstance().saveToSharedPreferences("user_data",new Gson().toJson(user,User.class));

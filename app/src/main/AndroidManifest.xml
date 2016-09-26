@@ -94,6 +94,7 @@
         </activity>
         <activity android:name=".activities.business.BusinessCancelBookingActivity" />
         <activity android:name=".activities.business.BusinessCategoriesActivity" />
+        <activity android:name=".activities.CustomerProfileActivity" />
     </application>
 
 </manifest>

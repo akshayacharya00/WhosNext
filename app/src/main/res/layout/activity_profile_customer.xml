@@ -8,6 +8,8 @@
     android:weightSum="10"
     tools:context="appsshoppy.com.whosnext.activities.SignInActivity">
 
+    <include layout="@layout/progress_overlay" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -32,7 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Customer Name"
-            android:id="@+id/txtCustomerName"
+            android:textColor="@android:color/white"
+            android:id="@+id/lblCustomerName"
             android:layout_alignTop="@+id/imgProfilePic"
             android:layout_margin="25dp"
             android:layout_toEndOf="@+id/imgProfilePic" />
@@ -41,11 +44,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Customer email"
-            android:id="@+id/txtCustomerEmail"
-            android:layout_marginLeft="25dp"
+            android:textColor="@android:color/white"
+            android:id="@+id/lblCustomerEmail"
             android:layout_marginRight="25dp"
-            android:layout_below="@+id/txtCustomerName"
-            android:layout_alignStart="@+id/txtCustomerName" />
+            android:layout_below="@+id/lblCustomerName"
+            android:layout_alignStart="@+id/lblCustomerName" />
 
     </RelativeLayout>
 
@@ -53,7 +56,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton2"
+        android:id="@+id/btnDone"
         style="?android:attr/borderlessButtonStyle"
         android:src="@drawable/submiticon"
         android:layout_alignParentBottom="true"
@@ -108,7 +111,7 @@
                 android:singleLine="true" />
 
             <AutoCompleteTextView
-                android:id="@+id/email"
+                android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/messageicon"
@@ -116,6 +119,65 @@
                 android:hint="@string/prompt_email"
                 android:layout_margin="10dp"
                 android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <AutoCompleteTextView
+                android:id="@+id/txtPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/phoneicon"
+                android:drawablePadding="20dp"
+                android:hint="Phone Number"
+                android:layout_margin="10dp"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:id="@+id/countrySpinner"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:id="@+id/citySpinner"
+                android:entries="@array/city_list"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
+            <EditText
+                android:id="@+id/txtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address"
+                android:layout_margin="10dp"
+                android:drawableLeft="@drawable/postcodeicon"
+                android:drawablePadding="20dp"
+                android:imeActionId="@+id/login"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeOptions="actionUnspecified"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/txtPostCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Postcode"
+                android:layout_margin="10dp"
+                android:drawableLeft="@drawable/postcodeicon"
+                android:drawablePadding="20dp"
+                android:imeActionId="@+id/login"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeOptions="actionUnspecified"
+                android:inputType="text"
                 android:maxLines="1"
                 android:singleLine="true" />
 
@@ -136,6 +198,7 @@
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/radioGender"
                     android:orientation="horizontal"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
@@ -143,11 +206,13 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:text="Male"
+                        android:id="@+id/radioMale"
                         android:layout_marginRight="10dp"
                         android:layout_height="wrap_content" />
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:text="Female"
+                        android:id="@+id/radioFemale"
                         android:layout_height="wrap_content" />
 
                 </RadioGroup>
@@ -162,24 +227,8 @@
                 android:layout_marginRight="10dp"
                 />
 
-
             <EditText
-                android:id="@+id/txtPostCode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Postcode"
-                android:layout_margin="10dp"
-                android:drawableLeft="@drawable/postcodeicon"
-                android:drawablePadding="20dp"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/password"
+                android:id="@+id/txtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Current Password"
@@ -193,7 +242,7 @@
                 android:maxLines="1"
                 android:singleLine="true" />
             <EditText
-                android:id="@+id/repassword"
+                android:id="@+id/txtRePassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="New Password"

@@ -156,7 +156,8 @@
                             android:layout_height="0dp"
                             android:layout_weight="700"
                             android:scaleType="centerInside"
-                            android:src="@drawable/categoriesbuttons"/>
+                            android:src="@drawable/categoriesbuttons"
+                            android:id="@+id/btnCategories" />
 
 
                         <TextView
@@ -220,7 +221,8 @@
                         android:layout_height="0dp"
                         android:layout_weight="700"
                         android:scaleType="centerInside"
-                        android:src="@drawable/openinghoursbutton"/>
+                        android:src="@drawable/openinghoursbutton"
+                        android:id="@+id/btnOpeningHours" />
 
 
                     <TextView
@@ -246,7 +248,8 @@
                         android:layout_height="0dp"
                         android:layout_weight="700"
                         android:scaleType="centerInside"
-                        android:src="@drawable/feespoliciesbutton"/>
+                        android:src="@drawable/feespoliciesbutton"
+                        android:id="@+id/btnFeePolicy" />
 
 
                     <TextView
@@ -335,7 +338,8 @@
                         android:layout_height="0dp"
                         android:layout_weight="700"
                         android:scaleType="centerInside"
-                        android:src="@drawable/logoutbutton"/>
+                        android:src="@drawable/logoutbutton"
+                        android:id="@+id/btnLogOut" />
 
 
                     <TextView

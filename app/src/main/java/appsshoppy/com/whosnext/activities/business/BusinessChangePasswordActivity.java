@@ -64,7 +64,7 @@ public class BusinessChangePasswordActivity extends AppCompatActivity {
         imgProfilePic = (ImageButton) findViewById(R.id.imgProfilePic);
         mProgressView = findViewById(R.id.progress_overlay);
         txtCustomerEmail = (TextView) findViewById(R.id.txtCustomerEmail);
-        txtCustomerName = (TextView) findViewById(R.id.txtCustomerName);
+        txtCustomerName = (TextView) findViewById(R.id.lblCustomerName);
         btnUpdate = (Button) findViewById(R.id.btnUpdate);
         txtPassword = (EditText) findViewById(R.id.txtNewPassword);
         txtRePassword = (EditText) findViewById(R.id.txtRePassword);

@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 
 import appsshoppy.com.whosnext.AppController;
 import appsshoppy.com.whosnext.R;
+import appsshoppy.com.whosnext.activities.CustomerProfileActivity;
+import appsshoppy.com.whosnext.activities.MainActivity;
 import appsshoppy.com.whosnext.activities.business.BusinessCategoriesActivity;
 import appsshoppy.com.whosnext.activities.business.BusinessFeesPolicyActivity;
 import appsshoppy.com.whosnext.activities.business.BusinessMyAccountActivity;
@@ -16,13 +18,15 @@ import appsshoppy.com.whosnext.activities.business.BusinessStaffActivity;
 
 public class HomeActivityIndividual extends AppCompatActivity {
 
-    private ImageButton btnServices, btnOpeningHours, btnFeePolicy, btnProfile, btnCategories, btnStaff;
+    private ImageButton btnServices, btnOpeningHours, btnFeePolicy, btnProfile, btnCategories, btnStaff, btnLogOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(AppController.role.equals("Business"))
             setContentView(R.layout.drawer_layout);
+        else if(AppController.role.equals("Customer"))
+            setContentView(R.layout.drawer_layout_customer);
         else
             setContentView(R.layout.drawer_layout_individual);
         btnServices = (ImageButton) findViewById(R.id.btnServices);
@@ -61,7 +65,10 @@ public class HomeActivityIndividual extends AppCompatActivity {
             btnProfile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(HomeActivityIndividual.this, BusinessMyAccountActivity.class));
+                    if(AppController.role.equals("Business"))
+                        startActivity(new Intent(HomeActivityIndividual.this, BusinessMyAccountActivity.class));
+                    else
+                        startActivity(new Intent(HomeActivityIndividual.this, CustomerProfileActivity.class));
                 }
             });
         }
@@ -85,6 +92,18 @@ public class HomeActivityIndividual extends AppCompatActivity {
                 }
             });
         }
+
+        btnLogOut = (ImageButton) findViewById(R.id.btnLogOut);
+        if(btnLogOut!=null) {
+            btnLogOut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(HomeActivityIndividual.this, MainActivity.class));
+                }
+            });
+        }
+
+
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         //getSupportActionBar().setCustomView(R.layout.app_bar);

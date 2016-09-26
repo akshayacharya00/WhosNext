@@ -103,7 +103,8 @@
                         android:layout_height="0dp"
                         android:layout_weight="700"
                         android:scaleType="centerInside"
-                        android:src="@drawable/profilebutton"/>
+                        android:src="@drawable/profilebutton"
+                        android:id="@+id/btnProfile" />
 
 
                     <TextView
@@ -245,7 +246,8 @@
                         android:layout_height="0dp"
                         android:layout_weight="700"
                         android:scaleType="centerInside"
-                        android:src="@drawable/logoutbutton"/>
+                        android:src="@drawable/logoutbutton"
+                        android:id="@+id/btnLogOut" />
 
 
                     <TextView
